@@ -1,0 +1,17 @@
+name: CPP Azure Devops Templates
+trigger: none
+pr:
+- main
+
+variables:
+  - name: agentPool
+    value: "ubuntu-latest"
+
+stages:
+  - stage: precommit
+    jobs:
+    - job: precommit
+      pool:
+        vmImage: ${{ variables.agentPool }}
+      steps:
+      - template: steps/common/precommit.yaml
